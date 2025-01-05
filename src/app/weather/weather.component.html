@@ -1,0 +1,73 @@
+<div class="weather-container">
+  <h1>Weather App</h1>
+  
+  <div class="search-container">
+    <input 
+      type="text" 
+      [(ngModel)]="cityName" 
+      (keyup.enter)="searchWeather()"
+      placeholder="Enter city name..."
+      class="search-input"
+      [disabled]="isLoading"
+    >
+    <button 
+      (click)="searchWeather()" 
+      class="search-button"
+      [disabled]="isLoading">
+      @if (isLoading) {
+        <i class="fas fa-spinner fa-spin"></i>
+      } @else {
+        <i class="fas fa-search"></i>
+      }
+    </button>
+  </div>
+
+  @if (error) {
+    <div class="error-message">
+      <p>{{ error }}</p>
+    </div>
+  }
+
+  @if (weatherData && locationData) {
+    <div class="weather-card">
+      <div class="weather-header">
+        <h2>{{ locationData.name }}
+          <span class="country">{{ locationData.country }}</span>
+        </h2>
+        <i class="fas {{ getWeatherIcon(weatherData.current.weather_code) }} weather-icon"></i>
+      </div>
+      
+      <div class="temperature">
+        {{ weatherData.current.temperature_2m.toFixed(1) }}°C
+      </div>
+      
+      <div class="weather-description">
+        {{ getWeatherDescription(weatherData.current.weather_code) }}
+      </div>
+
+      <div class="weather-details">
+        <div class="detail-item">
+          <i class="fas fa-thermometer-half"></i>
+          <span>Feels like: {{ weatherData.current.apparent_temperature.toFixed(1) }}°C</span>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-tint"></i>
+          <span>Humidity: {{ weatherData.current.relative_humidity_2m }}%</span>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-wind"></i>
+          <span>Wind: {{ weatherData.current.wind_speed_10m.toFixed(1) }} km/h</span>
+        </div>
+        <div class="detail-item">
+          <i class="fas fa-cloud-rain"></i>
+          <span>Precipitation: {{ weatherData.current.precipitation.toFixed(1) }} mm</span>
+        </div>
+      </div>
+    </div>
+  } @else if (!error && !isLoading) {
+    <div class="initial-message">
+      <i class="fas fa-cloud-sun"></i>
+      <p>Enter a city name to get weather information</p>
+    </div>
+  }
+</div> 
