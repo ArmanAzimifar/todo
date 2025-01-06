@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "routing-app": {
+    "todo": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
