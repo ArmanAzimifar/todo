@@ -25,17 +25,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18.19'
+          cache: 'npm'
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build Angular App
-        run: npm run build -- --base-href=/todo/ --output-path=./dist/browser
+        run: npm run build -- --configuration=production --base-href=/todo/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist/browser
+          path: ./docs
 
   deploy:
     environment:

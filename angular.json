@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/routing-app",
+            "outputPath": "docs",
             "index": "src/index.html",
             "baseHref": "/todo/",
             "browser": "src/main.ts",
@@ -39,6 +39,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/todo/",
               "budgets": [
                 {
                   "type": "initial",
