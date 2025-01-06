@@ -24,7 +24,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16' # Ensure compatibility with Angular 19
+          node-version: '18.19' # Updated to meet Angular CLI requirements
 
       - name: Install Dependencies
         run: npm install
