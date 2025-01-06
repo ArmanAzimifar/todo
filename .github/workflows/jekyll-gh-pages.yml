@@ -1,4 +1,4 @@
-name: Deploy Angular 19 to GitHub Pages
+name: Deploy Angular to GitHub Pages
 
 on:
   push:
@@ -24,18 +24,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.19' # Updated to meet Angular CLI requirements
+          node-version: '18.19'
 
       - name: Install Dependencies
         run: npm install
 
       - name: Build Angular App
-        run: npm run build -- --output-path=dist
+        run: npm run build -- --base-href=/todo/ --output-path=./dist/browser
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: ./dist/browser
 
   deploy:
     environment:
