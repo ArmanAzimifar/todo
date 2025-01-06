@@ -19,6 +19,7 @@
           "options": {
             "outputPath": "dist/routing-app",
             "index": "src/index.html",
+            "baseHref": "todo",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
